@@ -1,4 +1,4 @@
-// import axios from 'axios';
+import axios from 'axios';
 import {TimelineTile} from "./TimelineTile";
 
 export type Project = {
@@ -13,9 +13,19 @@ export type Project = {
   timeline: TimelineTile[]
 }
 
-// export const createProject = (params):
-//   Promise<Project> => axios.post<Project>(`url`, params)
-//   .then((res) => res.data)
-//   .catch((err) => {
-//     throw axiosErrorHandler(err);
-//   });
+export type CreateProjectParams = {
+  title: string,
+  ownerId: string,
+  thumbnailUrl: string,
+  githubUrl: string,
+  description: string,
+  acceptingVolunteers: boolean
+}
+
+export const createProject = (params: CreateProjectParams):
+  Promise<Project> => axios.post<Project>(`url`, params)
+  .then((res) => res.data);
+
+export const getProject = (projectId: number):
+  Promise<Project> => axios.get<Project>(`url/projectId`)
+  .then((res) => res.data);
