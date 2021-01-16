@@ -9,6 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
+import { TimelineTile } from './api/TimelineTile';
 
 // styles
 const useStyles = makeStyles((theme) => ({
@@ -33,54 +34,88 @@ const useStyles = makeStyles((theme) => ({
 // - pass in a onClickListener to FormControlLabel to handle the
 // clicking of the checkbox
 // - handle the clicking of the Post New Project button
-function Controls(props: any) {
+// function Controls(state: any, callback: any) {
+//     const classes = useStyles();
+//     return (
+//         <AppBar position="static">
+//             <Toolbar>
+//                 <Typography variant="h1" className={classes.title}>
+//                     Agora
+//                 </Typography>
+//                 <FormControlLabel
+//                     control={<Checkbox checked={state.isOpenOnly} onClick={callback} name="isOpenOnly" />}
+//                     label="Is Open"
+//                 />
+//                 <Button variant="contained" color="secondary" href="#contained-buttons">
+//                     Post New Project
+//                 </Button>
+//             </Toolbar>
+//         </AppBar>
+//     );
+// }
+
+function TimelineItem(item: TimelineTile) {
     const classes = useStyles();
     return (
-        <AppBar position="static">
-            <Toolbar>
-                <Typography variant="h1" className={classes.title}>
-                    Agora
-                </Typography>
-                <FormControlLabel
-                    control={<Checkbox checked={props.filterOnlyOpen} onClick={props.onFilterOnlyOpenClicked} name="checkedA" />}
-                    label="Is Open"
-                />
-                <Button variant="contained" color="secondary" href="#contained-buttons">
-                    Post New Project
-                </Button>
-            </Toolbar>
-        </AppBar>
+        <Grid item xs={12}>
+            <Card className={classes.card}>
+                <Typography variant="caption">{item.dateTime}</Typography>
+                <Typography variant="h4">{item.title}</Typography>
+                <Typography variant="body2">{item.content}</Typography>
+            </Card>
+        </Grid>
     );
 }
 
-// todo: Timeline() should accept an array of TimelineItems to display,
-// then proceed to display those items
-function Timeline(props: any) {
-    const classes = useStyles();
+function Timeline(items: TimelineTile[]) {
     return (
         <Grid container >
-            <Grid item xs={12}>
-                <Card className={classes.card}>
-                    <h2>Card</h2>
-                </Card>
-            </Grid>
+            {
+                <TimelineItem {...items[0]} />
+            }
         </Grid>
     );
 }
 
 // todo: add dynamic state functionality
-function Homepage() {
-    const props = {
-        filterOnlyOpen: false,
-        // timelineItems: TimelineItems[];
-        // onFilterOnlyOpenClicked: () => {console.log('CLICK')},
+function Homepage(items: TimelineTile[]) {
+    const [state, setState] = React.useState({
+        checkedA: true,
+    });
+
+    ///////////////////////////////////////////////////////
+    // todo: trigger a change to display only open projects
+    ///////////////////////////////////////////////////////
+    const handleCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setState({ ...state, [event.target.name]: event.target.checked });
     };
 
+    //////////////////////////////////////////////
+    // todo: bring user to the create project page
+    //////////////////////////////////////////////
+    const handleButton = (event: any) => {
+        console.log('New Project Button');
+    }
+
     // replace props with TypeScript typed information
+    const classes = useStyles();
     return (
         <Container maxWidth="lg">
-            <Controls props={props} />
-            <Timeline props={props}/>
+            <AppBar position="static">
+                <Toolbar>
+                    <Typography variant="h1" className={classes.title}>
+                        Agora
+                    </Typography>
+                    <FormControlLabel
+                        control={<Checkbox checked={state.checkedA} onChange={handleCheckbox} name="checkedA" />}
+                        label="Is Open Only"
+                    />
+                    <Button onClick={handleButton} variant="contained" color="secondary">
+                        Post New Project
+                    </Button>
+                </Toolbar>
+            </AppBar>
+            <Timeline {...items} />
         </Container>
     );
 }
