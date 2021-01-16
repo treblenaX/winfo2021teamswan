@@ -22,15 +22,14 @@ public class TileController {
     public Tile getTileByid(@PathVariable("id") String id) {
         return repository.findByProjectId(id);
     }
-    // stopped here 
     @RequestMapping(value = "/api/id/{id}", method = RequestMethod.PUT)
-    public void modifyPersonByid(@PathVariable("id") String id,
-                                       @Validated @RequestBody Tile tile) {
+    public void modifyTileByid(@PathVariable("id") String id,
+                               @Validated @RequestBody Tile tile) {
         tile.setProjectId(id);
         repository.save(tile);
     }
     @RequestMapping(value = "/api/createtile", method = RequestMethod.POST)
-    public Tile createPerson(@Validated @RequestBody Tile tile) {
+    public Tile createTile(@Validated @RequestBody Tile tile) {
         tile.setProjectId(ObjectId.get().toString());
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
