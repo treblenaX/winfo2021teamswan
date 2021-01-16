@@ -1,4 +1,4 @@
-package com.swan.agora;
+package com.swan.agora.models;
 
 import org.springframework.data.annotation.Id;
 
@@ -7,8 +7,8 @@ public class Project {
 	private String id;
 
 	private String title;
-	private Person owner;
-	private Person[] volunteers;
+	private Account owner;
+	private Account[] volunteers;
 	private boolean acceptingVolunteers;
 	private String description;
 
@@ -19,11 +19,11 @@ public class Project {
 		return title;
 	}
 
-	public Person getOwner() {
+	public Account getOwner() {
 		return owner;
 	}
 
-	public Person[] getVolunteers() {
+	public Account[] getVolunteers() {
 		return volunteers;
 	}
 
@@ -47,11 +47,11 @@ public class Project {
 		this.title = title;
 	}
 
-	public void setOwner(Person owner) {
+	public void setOwner(Account owner) {
 		this.owner = owner;
 	}
 
-	public void setVolunteers(Person[] volunteers) {
+	public void setVolunteers(Account[] volunteers) {
 		this.volunteers = volunteers;
 	}
 
