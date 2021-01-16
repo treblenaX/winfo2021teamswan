@@ -1,4 +1,4 @@
-package com.swan.agora;
+package com.swan.agora.models;
 
 import org.springframework.data.annotation.Id;
 

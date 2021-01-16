@@ -1,5 +1,7 @@
-package com.swan.agora;
+package com.swan.agora.controllers;
 
+import com.swan.agora.repositories.TileRepository;
+import com.swan.agora.models.Tile;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
