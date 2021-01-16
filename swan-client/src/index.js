@@ -67,6 +67,16 @@ function demoProjectPage() {
   );
 }
 
+// demo entrypoint: Create Project Page
+function demoCreateProject() {
+  ReactDOM.render(
+    <React.StrictMode>
+      <CreateProjectPage />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+
 // production entrypoint
 function start() {
   ReactDOM.render(
@@ -80,7 +90,8 @@ function start() {
 // start program
 // start();
 // demoHomePage();
-demoProjectPage();
+// demoProjectPage();
+demoCreateProject();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
