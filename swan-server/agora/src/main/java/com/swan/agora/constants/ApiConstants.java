@@ -19,8 +19,8 @@ public final class ApiConstants {
     public static final String BASE_TILE_URL = API_URL + "/tile";
     public static final String GET_ALL_TILES_URL = "/getall";
     public static final String GET_TILES_BY_ID_URL = "/id/{id}";
-    public static final String MODIFY_PERSON_URL = "/id/{id}";
-    public static final String CREATE_PERSON_URL = "/createtile";
+    public static final String MODIFY_PROJECT_URL = "/id/{id}";
+    public static final String CREATE_TILE_URL = "/createtile";
     public static final String DELETE_TILE_URL = "/id/{id}";
     public static final String DELETE_ALL_TILE = "/deleteall";
 }

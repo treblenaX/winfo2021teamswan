@@ -29,15 +29,15 @@ public class TileController {
     }
 
     // stopped here 
-    @RequestMapping(value = ApiConstants.MODIFY_PERSON_URL, method = RequestMethod.PUT)
-    public void modifyPersonByid(@PathVariable("id") String id,
+    @RequestMapping(value = ApiConstants.MODIFY_PROJECT_URL, method = RequestMethod.PUT)
+    public void modifyProjectByid(@PathVariable("id") String id,
                                        @Validated @RequestBody Tile tile) {
         tile.setProjectId(id);
         repository.save(tile);
     }
 
-    @RequestMapping(value = ApiConstants.CREATE_PERSON_URL, method = RequestMethod.POST)
-    public Tile createPerson(@Validated @RequestBody Tile tile) {
+    @RequestMapping(value = ApiConstants.CREATE_TILE_URL, method = RequestMethod.POST)
+    public Tile createTile(@Validated @RequestBody Tile tile) {
         tile.setProjectId(ObjectId.get().toString());
         LocalDateTime dateTime = LocalDateTime.now();
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
