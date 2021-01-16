@@ -1,12 +1,10 @@
 package com.swan.agora;
 
+import com.swan.agora.repositories.TileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @Import(MongoConfig.class)
 @SpringBootApplication()
