@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import CreateProjectPage from './CreateProjectPage';
 import './index.css';
 // import App from './App';
-import Homepage from './Homepage'
+// import Homepage from './Homepage';
+import ProjectPage from './ProjectPage';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Homepage />
+    <CreateProjectPage />
   </React.StrictMode>,
   document.getElementById('root')
 );
