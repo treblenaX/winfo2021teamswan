@@ -1,10 +1,13 @@
 package com.swan.agora;
 
+import com.swan.agora.repositories.TileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Import;
 
-@SpringBootApplication
+@Import(MongoConfig.class)
+@SpringBootApplication()
 public class AgoraApplication {
 	@Autowired
 	private TileRepository repository;

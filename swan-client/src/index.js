@@ -34,6 +34,19 @@ const demo_timelineTile =
     },
   ];
 
+// demo object: project
+const demo_project = {
+  title: "Sample Project",
+  projectId: 101,
+  ownerId: "wenjalan",
+  volunteerIds: ["elbertkcheng", "helen.li", "morticus"],
+  thumbnailUrl: "https://cdn.discordapp.com/attachments/796478136866963477/799822410945396786/unknown.png",
+  githubUrl: "https://github.com/treblenaX/winfo2021teamswan",
+  description: "Agora is a project platform for organizations and developers to promote their work and recruit new members",
+  acceptingVolunteers: true,
+  timeline: [],
+}
+
 // demo entrypoint: Homepage
 function demoHomePage() {
   ReactDOM.render(
@@ -44,7 +57,25 @@ function demoHomePage() {
   );
 }
 
+// demo entrypoint: Project Page
+function demoProjectPage() {
+  ReactDOM.render(
+    <React.StrictMode>
+      <ProjectPage {...demo_project} />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
 
+// demo entrypoint: Create Project Page
+function demoCreateProject() {
+  ReactDOM.render(
+    <React.StrictMode>
+      <CreateProjectPage />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
 
 // production entrypoint
 function start() {
@@ -58,7 +89,9 @@ function start() {
 
 // start program
 // start();
-demoHomePage();
+// demoHomePage();
+// demoProjectPage();
+demoCreateProject();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
