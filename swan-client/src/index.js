@@ -38,7 +38,7 @@ const demo_timelineTile =
 function demoHomePage() {
   ReactDOM.render(
     <React.StrictMode>
-      <Homepage {...demo_timelineTile} />
+      <Homepage items = {demo_timelineTile} />
     </React.StrictMode>,
     document.getElementById('root')
   );
