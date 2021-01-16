@@ -35,18 +35,22 @@ function ProjectSummary(project: Project) {
         <Card className={classes.summary}>
             <CardMedia 
                 className={classes.media}
-                image="https://cdn.discordapp.com/attachments/796478136866963477/799822623168921610/unknown.png"
+                image={project.thumbnailUrl}
             />
             <div className={classes.details}>
                 <CardContent className={classes.content}>
-                    <Typography variant="h6">Project Title</Typography>
-                    <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </Typography>
+                    <Typography variant="h6">{project.title}</Typography>
+                    <Typography variant="body1">{project.description}</Typography>
+                    <Typography variant="body1">
+                        <a href={project.githubUrl}>GitHub</a>
+                    </Typography>
                 </CardContent>
             </div>
         </Card>
     );
 }
 
+// todo: update timeline items with ones from project
 function ProjectTimeline(items: TimelineTile[]) {
     const classes = useStyles();
     return (
@@ -60,7 +64,6 @@ function ProjectTimeline(items: TimelineTile[]) {
                         </Card>
                     </Grid>
                 );
-                
             })}
         </Card>
     );
