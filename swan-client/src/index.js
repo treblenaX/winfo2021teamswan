@@ -51,7 +51,7 @@ const demo_project = {
 function demoHomePage() {
   ReactDOM.render(
     <React.StrictMode>
-      <Homepage {...demo_timelineTile} />
+      <Homepage items = {demo_timelineTile} />
     </React.StrictMode>,
     document.getElementById('root')
   );
@@ -62,6 +62,16 @@ function demoProjectPage() {
   ReactDOM.render(
     <React.StrictMode>
       <ProjectPage {...demo_project} />
+    </React.StrictMode>,
+    document.getElementById('root')
+  );
+}
+
+// demo entrypoint: Create Project Page
+function demoCreateProject() {
+  ReactDOM.render(
+    <React.StrictMode>
+      <CreateProjectPage />
     </React.StrictMode>,
     document.getElementById('root')
   );
@@ -80,7 +90,8 @@ function start() {
 // start program
 // start();
 // demoHomePage();
-demoProjectPage();
+// demoProjectPage();
+demoCreateProject();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
