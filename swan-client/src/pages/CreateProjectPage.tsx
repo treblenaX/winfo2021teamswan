@@ -1,9 +1,12 @@
 import { Button, Card, Checkbox, Container, FormControlLabel, TextField } from '@material-ui/core';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import {createProject} from "../api/Project";
+import { useHistory } from 'react-router-dom';
 
 function CreateProjectPage() {
-
+    const history = useHistory();
+    
     const useStyles = makeStyles((theme) => ({
         root: {
             display: 'flex',
@@ -47,8 +50,15 @@ function CreateProjectPage() {
     // todo: trigger a request to the service with the properties in state
     //////////////////////////////////////////////////////////////////////
     const onCreateProject = (event: any) => {
-        console.log('Create Project Button');
-        console.log(state);
+        const myProj = {
+            title: state.projectName,
+            githubUrl: state.projectGithubUrl,
+            description: state.projectDescription,
+            acceptingVolunteers: state.projectIsOpen
+        }
+        createProject(myProj)
+          .then(() => history.push('./ProjectPage'));
+        
     };
 
     const classes = useStyles();

@@ -3,14 +3,14 @@ import {Tile} from "./Tile";
 
 export type Project = {
   title: string,
-  projectId: number,
-  ownerId: string,
-  volunteerIds: string[],
-  thumbnailUrl: string,
+  projectId?: number,
+  ownerId?: string,
+  volunteerIds?: string[],
+  thumbnailUrl?: string,
   githubUrl: string,
   description: string,
   acceptingVolunteers: boolean,
-  timeline: Tile[]
+  timeline?: Tile[]
 }
 
 export type CreateProjectParams = {

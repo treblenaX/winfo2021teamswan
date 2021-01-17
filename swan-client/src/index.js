@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import CreateProjectPage from './CreateProjectPage';
-import Homepage from './Homepage';
+import CreateProjectPage from './pages/CreateProjectPage';
+import Homepage from './pages/Homepage';
 import './index.css';
 // import App from './App';
 // import Homepage from './Homepage';
-import ProjectPage from './ProjectPage';
+import ProjectPage from './pages/ProjectPage';
 import reportWebVitals from './reportWebVitals';
 
 // demo object: timeline tile

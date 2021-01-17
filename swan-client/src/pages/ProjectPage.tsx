@@ -1,8 +1,8 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
-import { Project } from './api/Project';
-import { Tile } from './api/Tile';
+import { Project } from '../api/Project';
+import { Tile } from '../api/Tile';
 import { Card, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
 
 
@@ -64,15 +64,16 @@ function ProjectSummary(project: Project) {
 }
 
 // todo: update timeline items with ones from project
-function ProjectTimeline(items: Tile[]) {
+function ProjectTimeline(props: {items: Tile[] }) {
+    const {items} = props;
     const classes = useStyles();
     return (
         <Card>
-            {[0,1,2].map((value) => {
+            {items.map((item, index) => {
                 return (
-                    <Grid key={value} item className={classes.content}>
-                        <h1>Heading</h1>
-                        <p>Some body</p>
+                    <Grid key={index} item className={classes.content}>
+                        <h1>item.title</h1>
+                        <p>item.description</p>
                     </Grid>
                 );
             })}
@@ -90,7 +91,7 @@ function ProjectPage(project: Project) {
     return (
         <Container maxWidth="lg" className={classes.container}>
             <ProjectSummary {...project} />
-            <ProjectTimeline {...(project.timeline)} />
+            <ProjectTimeline items = {project.timeline as Tile[]} />
         </Container>
     );
 }

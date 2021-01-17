@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -9,7 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
-import { Tile } from './api/Tile';
+import {getAllTiles, Tile} from '../api/Tile';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -28,7 +28,6 @@ const theme = createMuiTheme({
       },
     },
   });
-import { Tile } from './api/Tile';
 
 // styles
 const useStyles = makeStyles((theme) => ({
@@ -123,9 +122,9 @@ function Timeline(props: {items: Tile[] }) {
 }
 
 // todo: add dynamic state functionality
-function Homepage(props: {items: Tile[] }) {
-    const {items} = props;
-    const [state, setState] = React.useState({
+function Homepage() {
+    const [tiles, setTiles] = useState<Tile[] | null>(null)
+    const [state, setState] = useState({
         checkedA: true,
     });
 
@@ -142,7 +141,12 @@ function Homepage(props: {items: Tile[] }) {
     const handleButton = (event: any) => {
         console.log('New Project Button');
     }
-
+    
+    useEffect(() => {
+    const tiles = getAllTiles()
+      .then((data) => setTiles(data))
+    })
+    
     // replace props with TypeScript typed information
     const classes = useStyles();
     return (
@@ -166,7 +170,7 @@ function Homepage(props: {items: Tile[] }) {
                     
                 </Toolbar>
             </AppBar>
-            <Timeline items = {items} />
+            <Timeline items = {tiles as Tile[]} />
         </Container>
     );
 }
