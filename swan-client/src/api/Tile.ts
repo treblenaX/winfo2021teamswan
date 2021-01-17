@@ -17,8 +17,8 @@ export const getTileById = (id: string):
   Promise<Tile> => axios.get<Tile>(`/api/tile/id/{id}`)
   .then((res) => res.data);
 
-export const modifyProjectById = (id: string):
-  Promise<null> => axios.put<null>(`/api/tile/id/{id}`)
+export const modifyProjectById = (id: string, tile: Tile):
+  Promise<null> => axios.put<null>(`/api/tile/id/{id}`, tile)
   .then((res) => res.data);
 
 export const createTile = (tile: Tile):
