@@ -3,30 +3,30 @@ package com.swan.agora.models;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
+
 public class Account {
     @Id
     public ObjectId _id;
-
     public String name;
-    // yes - we're saving passwords in plaintext so we can implement other stuff first! :)
-    public String passwordHash;
+    public byte[] passwordHash;
     public String username;
     public String email;
-
-    // identifier for picture
-    public String photoId;
 
     /** Constructors */
     public Account() {}
 
-    public Account(ObjectId _id, String name, String passwordHash, String username,
-                   String email, String photoId) {
+    public Account(ObjectId _id, String name, String password, String username,
+                   String email) throws InvalidKeySpecException, NoSuchAlgorithmException {
         this._id = _id;
         this.name = name;
         this.username = username;
-        this.passwordHash = passwordHash;
+        setPasswordHash(password);
         this.email = email;
-        this.photoId = photoId;
     }
 
     /** Getters and Setters */
@@ -48,5 +48,15 @@ public class Account {
 
     public String getEmail() {
         return email;
+    }
+
+    public byte[] getPasswordHash() {
+        return passwordHash;
+    }
+    private void setPasswordHash(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
+        byte[] salt = "winfoSWAN".getBytes();
+        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
+        SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        this.passwordHash = factory.generateSecret(spec).getEncoded();
     }
 }

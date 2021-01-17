@@ -6,10 +6,12 @@ public final class ApiConstants {
 
     // Account URLs
     public static final String BASE_ACCOUNT_URL = API_URL + "/account";
-    public static final String GET_ACCOUNTS_URL = "/getall/";
+    public static final String GET_ACCOUNTS_URL = "/getall";
     public static final String GET_ACCOUNT_BY_ID = "/id/{id}";
     public static final String GET_ACCOUNT_BY_USERNAME = "/username";
     public static final String CREATE_NEW_ACCOUNT_URL = "/create_account";
+    public static final String LOGIN_URL = "/login";
+    public static final String DELETE_ALL_ACCOUNTS = "/deleteall";
 
     // Photo URLs
     public static final String BASE_PHOTOS_URL = API_URL + "/photos";
