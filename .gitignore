@@ -1,0 +1,15 @@
+
+swan-server/.idea/checkstyle-idea.xml
+swan-server/.idea/gradle.xml
+swan-server/.idea/jarRepositories.xml
+swan-server/.idea/misc.xml
+swan-server/.idea/modules.xml
+swan-server/.idea/modules/agora.main.iml
+swan-server/.idea/swan-server.iml
+swan-server/.idea/vcs.xml
+swan-server/agora/gradle/wrapper/gradle-wrapper.properties
+swan-server/agora/src/main/java/com/swan/agora/MongoConfig.java
+swan-server/agora/src/main/resources/application.properties
+swan-server/agora/gradle/wrapper/gradle-wrapper.properties
+swan-server/agora/src/main/java/com/swan/agora/MongoConfig.java
+swan-server/agora/src/main/resources/application.properties

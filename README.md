@@ -1,1 +1,10 @@
-
+# Project Agora
+Agora is a social media platform for developers and organizations to share projects and ideas, encouraging a more collaborative environment in the technology space.
+Oftentimes, coders start out in isolation, as institutions often do not teach the skills needed to evaluate diverse perspectives or work as part of a team. Agora aims to change how programming is approached by connecting skilled technologists with projects and teams that need their help. In providing a place where teams can share their ideas with the world, Agora aims to unite people around a vision of a better, more technologically advanced world.
+Programming is not often viewed as a social activity, but that’s far from reality -- teamwork is actually a key aspect of being a successful developer. That's where Agora comes in. We aim to encourage a more collaborative environment in the technology space by creating Agora, a social media platform for developers and organizations to share projects and ideas. 
+With Agora, developers can easily access innovations from around the world, and collaborate by requesting helpers or contributing their own skills to others’ works. Non-profits can also use this space to recruit volunteers to their cause. 
+## Technical Overview
+Some notable technologies used in this project include Spring, MongoDB, and React.js. Spring and MongoDB were used to create the backend of our platform, allowing us to create custom data objects (including the Account object, Project object, etc) and store them efficiently in a secure database while creating access points for our front end developers to use. Our frontend consists primarily of React.js and Typescript, where the aforementioned access points are used to create a friendly and intuitive client for users to play around with.
+## Developer backgrounds
+Team SWAN, the developers of this application, consists of four university students aiming to make a positive impact on the world through the means of technology.
+![alt text](https://miro.medium.com/max/859/1*QZFK0Qv33dH2HNEm1X_XZg.png)
