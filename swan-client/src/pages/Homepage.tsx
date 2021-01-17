@@ -9,7 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
-import {getAllTiles, Tile} from '../api/Tile';
+import {getAllTiles, Tile, IServerResponseTiles} from '../api/Tile';
 import { createMuiTheme } from '@material-ui/core/styles';
 
 const theme = createMuiTheme({
@@ -108,8 +108,9 @@ function TimelineItem(item: Tile) {
     );
 }
 
-function Timeline(props: {items: Tile[] }) {
-    const {items} = props;
+function Timeline(response: IServerResponseTiles) {
+    const items: Tile[] = response.tiles;
+    
     return (
         <Grid container >
             {
@@ -122,12 +123,11 @@ function Timeline(props: {items: Tile[] }) {
 }
 
 // todo: add dynamic state functionality
-function Homepage() {
+function Homepage(timeline: IServerResponseTiles) {
     const [tiles, setTiles] = useState<Tile[] | null>(null)
     const [state, setState] = useState({
         checkedA: true,
     });
-
     ///////////////////////////////////////////////////////
     // todo: trigger a change to display only open projects
     ///////////////////////////////////////////////////////
@@ -142,10 +142,10 @@ function Homepage() {
         console.log('New Project Button');
     }
     
-    useEffect(() => {
-    const tiles = getAllTiles()
-      .then((data) => setTiles(data))
-    })
+    // useEffect(() => {
+    // const tiles = getAllTiles()
+    //   .then((data) => setTiles(data))
+    // })
     
     // replace props with TypeScript typed information
     const classes = useStyles();
@@ -170,7 +170,7 @@ function Homepage() {
                     
                 </Toolbar>
             </AppBar>
-            <Timeline items = {tiles as Tile[]} />
+            <Timeline {...timeline} />
         </Container>
     );
 }

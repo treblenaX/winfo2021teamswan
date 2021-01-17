@@ -5,30 +5,78 @@ export type Tile = {
   title: string,
   authorId: string,
   dateTime: Date,
-  projectId: number,
+  projectId: string,
   content: string
 }
 
+const poo = "http://localhost:3001";
+
+export interface IServerResponseTiles {
+  tiles: Tile[]
+}
+
 export const getAllTiles = ():
-  Promise<Tile[]> => axios.get<Tile[]>(`/api/tile/getall`)
-  .then((res) => res.data);
+  Promise<IServerResponseTiles> => axios.get<Tile[]>(poo + `/api/tile/getall`)
+  .then((res) => {
+    const arr: Tile[] = [];
+
+    const test: any[] = res.data;
+
+    for (let i = 0; i < test.length; i++) {
+      console.log(i);
+      const e: Tile = test[i];
+
+      const el: Tile = {
+        title: e.title,
+        authorId: e.authorId,
+        dateTime: e.dateTime,
+        projectId: e.projectId,
+        content: e.content
+      };
+
+      arr.push(el);
+    } 
+
+    // for (const e of test) {
+    //   const el: Tile = {
+    //     title: e.title,
+    //     authorId: e.authorId,
+    //     dateTime: e.dateTime,
+    //     projectId: e.projectId,
+    //     content: e.content
+    //   };
+
+    //   console.log('PUSH: ' + el);
+
+    //   arr.push(el);
+    // }
+
+    const final: IServerResponseTiles = {
+      tiles: arr
+    };
+
+    console.log("Final: " + JSON.stringify(final));
+
+
+    return final;
+  });
 
 export const getTileById = (id: string):
-  Promise<Tile> => axios.get<Tile>(`/api/tile/id/{id}`)
+  Promise<Tile> => axios.get<Tile>(poo + `/api/tile/id/{id}`)
   .then((res) => res.data);
 
 export const modifyProjectById = (id: string, tile: Tile):
-  Promise<null> => axios.put<null>(`/api/tile/id/{id}`, tile)
+  Promise<null> => axios.put<null>(poo + `/api/tile/id/{id}`, tile)
   .then((res) => res.data);
 
 export const createTile = (tile: Tile):
-  Promise<Tile> => axios.post<Tile>(`/api/tile/createtile`)
+  Promise<Tile> => axios.post<Tile>(poo + `/api/tile/createtile`)
   .then((res) => res.data);
 
 export const deleteTile = (id: string):
-  Promise<null> => axios.delete<null>(`/api/tile/id/{id}`)
+  Promise<null> => axios.delete<null>(poo + `/api/tile/id/{id}`)
   .then((res) => res.data);
 
 export const deleteAll = ():
-  Promise<null> => axios.delete<null>(`/api/tile/deleteall`)
+  Promise<null> => axios.delete<null>(poo + `/api/tile/deleteall`)
   .then((res) => res.data);

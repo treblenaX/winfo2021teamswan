@@ -22,27 +22,29 @@ export type CreateProjectParams = {
   acceptingVolunteers: boolean
 }
 
+const poo = "http://localhost:3001";
+
 
 export const getAllProjects = ():
-  Promise<Project[]> => axios.get<Project[]>(`http://localhost:3001/api/project`)
+  Promise<Project[]> => axios.get<Project[]>(poo + `/api/project`)
   .then((res) => res.data);
 
 export const getProjectById = (id: string):
-Promise<Project> => axios.get<Project>(`http://localhost:3001/api/project/id/` + id)
+Promise<Project> => axios.get<Project>(poo + `/api/project/id/` + id)
   .then((res) => res.data);
 
 export const modifyProjectById = (id: string, project: Project):
-  Promise<null> => axios.put<null>(`/api/id/{id}`, project)
+  Promise<null> => axios.put<null>(poo + `/api/id/{id}`, project)
   .then((res) => res.data);
 
 export const createProject = (project: Project):
-  Promise<Project> => axios.post<Project>(`/api/createproject`)
+  Promise<Project> => axios.post<Project>(poo + `/api/createproject`)
   .then((res) => res.data);
 
 export const deleteProject = (id: string):
-  Promise<null> => axios.delete<null>(`/api/id/{id}`)
+  Promise<null> => axios.delete<null>(poo + `/api/id/{id}`)
   .then((res) => res.data);
 
 export const deleteAll = ():
-  Promise<null> => axios.delete<null>(`/api/deleteall`)
+  Promise<null> => axios.delete<null>(poo + `/api/deleteall`)
   .then((res) => res.data);
