@@ -24,12 +24,12 @@ public class TileController {
     }
 
     @RequestMapping(value = ApiConstants.GET_TILES_BY_ID_URL, method = RequestMethod.GET)
-    public Tile getTileByid(@PathVariable("id") String id) {
+    public Tile getTileById(@PathVariable("id") String id) {
         return repository.findByProjectId(id);
     }
 
     // stopped here 
-    @RequestMapping(value = ApiConstants.MODIFY_PROJECT_URL, method = RequestMethod.PUT)
+    @RequestMapping(value = ApiConstants.MODIFY_TILE_URL, method = RequestMethod.PUT)
     public void modifyProjectByid(@PathVariable("id") String id,
                                        @Validated @RequestBody Tile tile) {
         tile.setProjectId(id);

@@ -2,14 +2,22 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { Project } from './api/Project';
-import { TimelineTile } from './api/TimelineTile';
+import { Tile } from './api/Tile';
 import { Card, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
 
 
 // styles
 const useStyles = makeStyles((theme) => ({
+    container: {
+        paddingTop: theme.spacing(2),
+        backgroundColor: '#c8e6c9',
+        height: '1000vw',
+    },
+
     summary: {
         display: 'flex',
+        backgroundColor: '#e1f5fe',
+        marginBottom: theme.spacing(2),
     },
 
     details: {
@@ -19,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
     content: {
         flex: '1 0 auto',
+        paddingLeft: theme.spacing(2),
     },
 
     media: {
@@ -26,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
         width: 300,
         height: 300,
     },
+
+    timelineItem: {
+    },
+
 }));
 
 // displays the project summary
@@ -51,17 +64,15 @@ function ProjectSummary(project: Project) {
 }
 
 // todo: update timeline items with ones from project
-function ProjectTimeline(items: TimelineTile[]) {
+function ProjectTimeline(items: Tile[]) {
     const classes = useStyles();
     return (
         <Card>
             {[0,1,2].map((value) => {
                 return (
-                    <Grid key={value} item>
-                        <Card className={classes.content}>
-                            <h1>Heading</h1>
-                            <p>Some body</p>
-                        </Card>
+                    <Grid key={value} item className={classes.content}>
+                        <h1>Heading</h1>
+                        <p>Some body</p>
                     </Grid>
                 );
             })}
@@ -69,7 +80,7 @@ function ProjectTimeline(items: TimelineTile[]) {
     );
 }
 
-function TimelineCard(tile: TimelineTile) {
+function TimelineCard(tile: Tile) {
     return <h1>Card</h1>;
 }
 
@@ -77,7 +88,7 @@ function TimelineCard(tile: TimelineTile) {
 function ProjectPage(project: Project) {
     const classes = useStyles();
     return (
-        <Container maxWidth="lg">
+        <Container maxWidth="lg" className={classes.container}>
             <ProjectSummary {...project} />
             <ProjectTimeline {...(project.timeline)} />
         </Container>

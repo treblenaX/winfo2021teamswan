@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {TimelineTile} from "./TimelineTile";
+import {Tile} from "./Tile";
 
 export type Project = {
   title: string,
@@ -10,7 +10,7 @@ export type Project = {
   githubUrl: string,
   description: string,
   acceptingVolunteers: boolean,
-  timeline: TimelineTile[]
+  timeline: Tile[]
 }
 
 export type CreateProjectParams = {
@@ -22,10 +22,28 @@ export type CreateProjectParams = {
   acceptingVolunteers: boolean
 }
 
-export const createProject = (params: CreateProjectParams):
-  Promise<Project> => axios.post<Project>(`url`, params)
+
+
+export const getAllProjects = ():
+  Promise<Project[]> => axios.get<Project[]>(`/api/getall`)
   .then((res) => res.data);
 
-export const getProject = (projectId: number):
-  Promise<Project> => axios.get<Project>(`url/projectId`)
+export const getProjectById = (id: string):
+  Promise<Project> => axios.get<Project>(`/api/id/{id}`)
+  .then((res) => res.data);
+
+export const modifyProjectById = (id: string, project: Project):
+  Promise<null> => axios.put<null>(`/api/id/{id}`, project)
+  .then((res) => res.data);
+
+export const createProject = (project: Project):
+  Promise<Project> => axios.post<Project>(`/api/createproject`)
+  .then((res) => res.data);
+
+export const deleteProject = (id: string):
+  Promise<null> => axios.delete<null>(`/api/id/{id}`)
+  .then((res) => res.data);
+
+export const deleteAll = ():
+  Promise<null> => axios.delete<null>(`/api/deleteall`)
   .then((res) => res.data);
