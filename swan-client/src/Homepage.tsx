@@ -108,18 +108,22 @@ function TimelineItem(item: TimelineTile) {
     );
 }
 
-function Timeline(items: TimelineTile[]) {
+function Timeline(props: {items: TimelineTile[] }) {
+    const {items} = props;
     return (
         <Grid container >
             {
-                <TimelineItem {...items[0]} />
+                items.map((item, index) => (
+                  <TimelineItem title={item.title} authorId={item.authorId} dateTime={item.dateTime} projectId={item.projectId} content={item.content} />
+                ))
             }
         </Grid>
     );
 }
 
 // todo: add dynamic state functionality
-function Homepage(items: TimelineTile[]) {
+function Homepage(props: {items: TimelineTile[] }) {
+    const {items} = props;
     const [state, setState] = React.useState({
         checkedA: true,
     });
@@ -161,7 +165,7 @@ function Homepage(items: TimelineTile[]) {
                     
                 </Toolbar>
             </AppBar>
-            <Timeline {...items} />
+            <Timeline items = {items} />
         </Container>
     );
 }

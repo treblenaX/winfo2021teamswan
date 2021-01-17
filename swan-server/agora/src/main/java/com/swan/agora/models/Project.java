@@ -5,16 +5,20 @@ import org.springframework.data.annotation.Id;
 public class Project {
 	@Id
 	private String id;
-
 	private String title;
 	private Account owner;
 	private Account[] volunteers;
 	private boolean acceptingVolunteers;
 	private String description;
-
 	private String thumbnailUrl;
 	private String githubUrl;
+	public String getId() {
+		return id;
+	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getTitle() {
 		return title;
 	}
