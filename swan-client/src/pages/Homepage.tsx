@@ -11,6 +11,8 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import {getAllTiles, Tile, IServerResponseTiles} from '../api/Tile';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { IServerResponseProjects } from '../api/Project';
+import { demoCreateProject } from '..';
 
 const theme = createMuiTheme({
     palette: {
@@ -110,7 +112,7 @@ function TimelineItem(item: Tile) {
 
 function Timeline(response: IServerResponseTiles) {
     const items: Tile[] = response.tiles;
-    
+
     return (
         <Grid container >
             {
@@ -139,7 +141,7 @@ function Homepage(timeline: IServerResponseTiles) {
     // todo: bring user to the create project page
     //////////////////////////////////////////////
     const handleButton = (event: any) => {
-        console.log('New Project Button');
+        demoCreateProject();
     }
     
     // useEffect(() => {

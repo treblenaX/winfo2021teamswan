@@ -3,6 +3,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {createProject} from "../api/Project";
 import { useHistory } from 'react-router-dom';
+import { demoHomePage } from '../index'; 
+import { createTile, Tile } from '../api/Tile';
 
 function CreateProjectPage() {
     const history = useHistory();
@@ -56,9 +58,20 @@ function CreateProjectPage() {
             description: state.projectDescription,
             acceptingVolunteers: state.projectIsOpen
         }
+
+        const d: Date = new Date();
+
+        const myTile: Tile = {
+            title: myProj.title,
+            dateTime: d.toDateString(),
+            content: myProj.description
+        }
+
+        console.log(JSON.stringify(myProj));
         createProject(myProj)
-          .then(() => history.push('./ProjectPage'));
-        
+          .then();
+        createTile(myTile)
+            .then(() => demoHomePage());
     };
 
     const classes = useStyles();

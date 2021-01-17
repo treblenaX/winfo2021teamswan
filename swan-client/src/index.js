@@ -7,7 +7,7 @@ import './index.css';
 // import Homepage from './Homepage';
 import ProjectPage from './pages/ProjectPage';
 import reportWebVitals from './reportWebVitals';
-import {getProjectById} from './api/Project';
+import {getProjectById, getAllProjects} from './api/Project';
 import { getPhotoById } from './api/Photo';
 import { getAllTiles, Tile } from './api/Tile';
 // demo object: timeline tile
@@ -27,7 +27,7 @@ const demo_timelineTile =
       projectId: 12345,
       content: "Tile Content Tile Content Tile Content",
     },
-    {
+    { 
       title: "Timeline Tile Title 2",
       authorId: 12345,
       dateTime: "1.1.1",
@@ -50,8 +50,9 @@ const demo_project = {
 }
 
 // demo entrypoint: Homepage
-async function demoHomePage() {
+export async function demoHomePage() {
   const timeline = await getAllTiles();
+  const allProjects = await getAllProjects();
   ReactDOM.render(
     <React.StrictMode>
       <Homepage {...timeline} />
@@ -61,7 +62,7 @@ async function demoHomePage() {
 }
 
 // demo entrypoint: Project Page
-async function demoProjectPage() {
+export async function demoProjectPage() {
   console.log('Loading demo Project Page');
   const starbotProjectId = "6003c83801238d6c2efac8e7";
   const project = {
@@ -78,7 +79,7 @@ async function demoProjectPage() {
 }
 
 // demo entrypoint: Create Project Page
-function demoCreateProject() {
+export function demoCreateProject() {
   ReactDOM.render(
     <React.StrictMode>
       <CreateProjectPage />
@@ -88,18 +89,19 @@ function demoCreateProject() {
 }
 
 // production entrypoint
-function start() {
+async function start() {
+  const timeline = await getAllTiles();
   ReactDOM.render(
     <React.StrictMode>
-      <Homepage />
+      <Homepage {...timeline}/>
     </React.StrictMode>,
     document.getElementById('root')
   );
 }
 
 // start program
-// start();
-demoHomePage();
+start();
+// demoHomePage();
 // demoProjectPage();
 // demoCreateProject();
 

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {Tile} from "./Tile";
+import { ownerDocument } from '@material-ui/core';
 
 export type Project = {
   title: string,
@@ -24,10 +25,39 @@ export type CreateProjectParams = {
 
 const poo = "http://localhost:3001";
 
+export interface IServerResponseProjects {
+  projects: Project[]
+}
 
 export const getAllProjects = ():
-  Promise<Project[]> => axios.get<Project[]>(poo + `/api/project`)
-  .then((res) => res.data);
+  Promise<IServerResponseProjects> => axios.get<Project[]>(poo + `/api/project`)
+  .then((res) => {
+    const arr: Project[] = [];
+
+    const test: any[] = res.data;
+
+    for (let i = 0; i < test.length; i++) {
+      const e: any = test[i];
+
+      const el: Project = {
+        title: e.title,
+        githubUrl: e.githubUrl,
+        description: e.description,
+        acceptingVolunteers: e.acceptingVolunteers
+      };
+
+      arr.push(el);
+    }
+
+    const final: IServerResponseProjects = {
+      projects: arr
+    };
+
+    return final;
+  });
+// export const getAllProjects = ():
+//   Promise<Project[]> => axios.get<Project[]>(poo + `/api/project`)
+//   .then((res) => res.data);
 
 export const getProjectById = (id: string):
 Promise<Project> => axios.get<Project>(poo + `/api/project/id/` + id)
@@ -38,7 +68,7 @@ export const modifyProjectById = (id: string, project: Project):
   .then((res) => res.data);
 
 export const createProject = (project: Project):
-  Promise<Project> => axios.post<Project>(poo + `/api/createproject`)
+  Promise<Project> => axios.post<Project>(poo + `/api/project/create_project`, project)
   .then((res) => res.data);
 
 export const deleteProject = (id: string):

@@ -3,9 +3,9 @@ import {Project} from "./Project";
 
 export type Tile = {
   title: string,
-  authorId: string,
-  dateTime: Date,
-  projectId: string,
+  authorId?: string,
+  dateTime: string,
+  projectId?: string,
   content: string
 }
 
@@ -23,7 +23,6 @@ export const getAllTiles = ():
     const test: any[] = res.data;
 
     for (let i = 0; i < test.length; i++) {
-      console.log(i);
       const e: Tile = test[i];
 
       const el: Tile = {
@@ -55,9 +54,6 @@ export const getAllTiles = ():
       tiles: arr
     };
 
-    console.log("Final: " + JSON.stringify(final));
-
-
     return final;
   });
 
@@ -70,7 +66,7 @@ export const modifyProjectById = (id: string, tile: Tile):
   .then((res) => res.data);
 
 export const createTile = (tile: Tile):
-  Promise<Tile> => axios.post<Tile>(poo + `/api/tile/createtile`)
+  Promise<Tile> => axios.post<Tile>(poo + `/api/tile/createtile`, tile)
   .then((res) => res.data);
 
 export const deleteTile = (id: string):
