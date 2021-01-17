@@ -29,11 +29,11 @@ export const getAllProjects = ():
   .then((res) => res.data);
 
 export const getProjectById = (id: string):
-  Promise<Project> => axios.get<Project>(`/api/id/{id}`)
+  Promise<Project> => axios.get<Project>(`http://localhost:3001/api/id/` + id)
   .then((res) => res.data);
 
 export const modifyProjectById = (id: string, project: Project):
-  Promise<null> => axios.put<null>(`/api/id/{id}`, project)
+  Promise<null> => axios.put<null>(`/api/id/` + id, project)
   .then((res) => res.data);
 
 export const createProject = (project: Project):

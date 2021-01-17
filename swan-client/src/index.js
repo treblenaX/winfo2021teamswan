@@ -7,7 +7,7 @@ import './index.css';
 // import Homepage from './Homepage';
 import ProjectPage from './pages/ProjectPage';
 import reportWebVitals from './reportWebVitals';
-
+import {getProjectById} from './api/Project';
 // demo object: timeline tile
 const demo_timelineTile = 
   [
@@ -58,10 +58,13 @@ function demoHomePage() {
 }
 
 // demo entrypoint: Project Page
-function demoProjectPage() {
+async function demoProjectPage() {
+  console.log('Loading demo Project Page');
+  const starbotProjectId = "60039d73102aaf24f8ea8f78";
+  const project = await getProjectById(starbotProjectId);
   ReactDOM.render(
     <React.StrictMode>
-      <ProjectPage {...demo_project} />
+      <ProjectPage {...project} />
     </React.StrictMode>,
     document.getElementById('root')
   );
@@ -81,7 +84,7 @@ function demoCreateProject() {
 function start() {
   ReactDOM.render(
     <React.StrictMode>
-      <CreateProjectPage />
+      <Homepage />
     </React.StrictMode>,
     document.getElementById('root')
   );
@@ -90,8 +93,8 @@ function start() {
 // start program
 // start();
 // demoHomePage();
-// demoProjectPage();
-demoCreateProject();
+demoProjectPage();
+// demoCreateProject();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
