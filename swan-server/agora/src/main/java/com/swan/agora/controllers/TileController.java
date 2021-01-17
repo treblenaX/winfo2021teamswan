@@ -24,7 +24,7 @@ public class TileController {
     }
 
     @RequestMapping(value = ApiConstants.GET_TILES_BY_ID_URL, method = RequestMethod.GET)
-    public Tile getTileByid(@PathVariable("id") String id) {
+    public Tile getTileById(@PathVariable("id") String id) {
         return repository.findByProjectId(id);
     }
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 import { Project } from './api/Project';
-import { TimelineTile } from './api/TimelineTile';
+import { Tile } from './api/Tile';
 import { Card, CardContent, CardMedia, Grid, Typography } from '@material-ui/core';
 
 
@@ -51,7 +51,7 @@ function ProjectSummary(project: Project) {
 }
 
 // todo: update timeline items with ones from project
-function ProjectTimeline(items: TimelineTile[]) {
+function ProjectTimeline(items: Tile[]) {
     const classes = useStyles();
     return (
         <Card>
@@ -69,7 +69,7 @@ function ProjectTimeline(items: TimelineTile[]) {
     );
 }
 
-function TimelineCard(tile: TimelineTile) {
+function TimelineCard(tile: Tile) {
     return <h1>Card</h1>;
 }
 

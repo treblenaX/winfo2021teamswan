@@ -9,7 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
-import { TimelineTile } from './api/TimelineTile';
+import { Tile } from './api/Tile';
 
 // styles
 const useStyles = makeStyles((theme) => ({
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
 //     );
 // }
 
-function TimelineItem(item: TimelineTile) {
+function TimelineItem(item: Tile) {
     const classes = useStyles();
     return (
         <Grid item xs={12}>
@@ -67,7 +67,7 @@ function TimelineItem(item: TimelineTile) {
     );
 }
 
-function Timeline(props: {items: TimelineTile[] }) {
+function Timeline(props: {items: Tile[] }) {
     const {items} = props;
     return (
         <Grid container >
@@ -81,7 +81,7 @@ function Timeline(props: {items: TimelineTile[] }) {
 }
 
 // todo: add dynamic state functionality
-function Homepage(props: {items: TimelineTile[] }) {
+function Homepage(props: {items: Tile[] }) {
     const {items} = props;
     const [state, setState] = React.useState({
         checkedA: true,

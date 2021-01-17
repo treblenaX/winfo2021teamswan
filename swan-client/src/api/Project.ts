@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {TimelineTile} from "./TimelineTile";
+import {Tile} from "./Tile";
 
 export type Project = {
   title: string,
@@ -10,7 +10,7 @@ export type Project = {
   githubUrl: string,
   description: string,
   acceptingVolunteers: boolean,
-  timeline: TimelineTile[]
+  timeline: Tile[]
 }
 
 export type CreateProjectParams = {
@@ -23,9 +23,9 @@ export type CreateProjectParams = {
 }
 
 export const createProject = (params: CreateProjectParams):
-  Promise<Project> => axios.post<Project>(`url`, params)
+  Promise<Project> => axios.post<Project>(`/api/`, params)
   .then((res) => res.data);
 
 export const getProject = (projectId: number):
-  Promise<Project> => axios.get<Project>(`url/projectId`)
+  Promise<Project> => axios.get<Project>(`/api/`)
   .then((res) => res.data);
