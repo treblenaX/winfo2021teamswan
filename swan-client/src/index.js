@@ -8,6 +8,7 @@ import './index.css';
 import ProjectPage from './pages/ProjectPage';
 import reportWebVitals from './reportWebVitals';
 import {getProjectById} from './api/Project';
+import { getPhotoById } from './api/Photo';
 // demo object: timeline tile
 const demo_timelineTile = 
   [
@@ -60,8 +61,12 @@ function demoHomePage() {
 // demo entrypoint: Project Page
 async function demoProjectPage() {
   console.log('Loading demo Project Page');
-  const starbotProjectId = "60039d73102aaf24f8ea8f78";
-  const project = await getProjectById(starbotProjectId);
+  const starbotProjectId = "6003c83801238d6c2efac8e7";
+  const project = {
+    project: await getProjectById(starbotProjectId),
+    image: "http://localhost:3001/api/photos/get/6003c7b901238d6c2efac8e3"
+  };
+  
   ReactDOM.render(
     <React.StrictMode>
       <ProjectPage {...project} />

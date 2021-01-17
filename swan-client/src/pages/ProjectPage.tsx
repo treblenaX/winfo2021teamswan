@@ -42,20 +42,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // displays the project summary
-function ProjectSummary(project: Project) {
+function ProjectSummary(project: any) {
+    const p  = project.project;
     const classes = useStyles();
     return (
         <Card className={classes.summary}>
             <CardMedia 
                 className={classes.media}
-                image={project.thumbnailUrl}
+                image={project.image}
             />
             <div className={classes.details}>
                 <CardContent className={classes.content}>
-                    <Typography variant="h6">{project.title}</Typography>
-                    <Typography variant="body1">{project.description}</Typography>
+                    <Typography variant="h6">{p.title}</Typography>
+                    <Typography variant="body1">{p.description}</Typography>
                     <Typography variant="body1">
-                        <a href={project.githubUrl}>GitHub</a>
+                        <a href={p.githubUrl}>GitHub</a>
                     </Typography>
                 </CardContent>
             </div>
@@ -91,7 +92,7 @@ function ProjectPage(project: Project) {
     return (
         <Container maxWidth="lg" className={classes.container}>
             <ProjectSummary {...project} />
-            <ProjectTimeline items = {project.timeline as Tile[]} />
+            {/* <ProjectTimeline items = {project.timeline as Tile[]} /> */}
         </Container>
     );
 }
