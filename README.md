@@ -1,4 +1,4 @@
 
 # Welcome!
 
-## Main branch is DEVELOPMENT
+## Main branch is PRODUCTION -> v0.1
