@@ -53,8 +53,7 @@ public class Account {
     public byte[] getPasswordHash() {
         return passwordHash;
     }
-
-    public void setPasswordHash(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
+    private void setPasswordHash(String password) throws InvalidKeySpecException, NoSuchAlgorithmException {
         byte[] salt = "winfoSWAN".getBytes();
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, 65536, 128);
         SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
