@@ -3,6 +3,7 @@ package com.swan.agora.controllers;
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.swan.agora.constants.ApiConstants;
+import com.swan.agora.models.Photo;
 import com.swan.agora.repositories.PhotoRepository;
 import com.swan.agora.services.PhotoService;
 import org.bson.types.ObjectId;
@@ -27,13 +28,14 @@ public class PhotoController {
     private PhotoService photoService;
 
     @RequestMapping(value = ApiConstants.ADD_PHOTO_URL, method = RequestMethod.POST)
-    public ObjectId addPhoto(@RequestParam("title") String title, @RequestParam("image") MultipartFile image)
+    public Photo addPhoto(@RequestParam("title") String title, @RequestParam("image") MultipartFile image)
             throws IOException {
         DBObject metaData = new BasicDBObject();
         metaData.put(title, title + " test");
 
         ObjectId id = photoService.storeFile(image.getInputStream(), title, "image/jpg", metaData);
-        return id;
+        Photo photo = new Photo(id.toHexString(), title);
+        return photo;
     }
 
     @RequestMapping(value = ApiConstants.GET_PHOTO_URL, method = RequestMethod.GET)

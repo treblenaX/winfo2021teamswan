@@ -8,21 +8,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "photos")
 public class Photo {
     @Id
-    private ObjectId _id;
+    private String _id;
     private String title;
-    private Binary image;
 
-    public Photo(ObjectId _id, String title) {
+    public Photo(String _id, String title) {
         this._id = _id;
         this.title = title;
     }
 
     /** Getters and Setters */
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this._id = id;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return this._id;
     }
 
@@ -34,11 +33,11 @@ public class Photo {
         return this.title;
     }
 
-    public void setImage(Binary image) {
-        this.image = image;
-    }
-
-    public Binary getImage() {
-        return image;
-    }
+//    public void setImageId(ObjectId imageId) {
+//        this.imageId = imageId;
+//    }
+//
+//    public ObjectId getImageId() {
+//        return imageId;
+//    }
 }

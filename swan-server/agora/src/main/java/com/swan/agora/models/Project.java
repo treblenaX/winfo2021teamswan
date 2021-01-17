@@ -4,25 +4,21 @@ import org.springframework.data.annotation.Id;
 
 public class Project {
 	@Id
-	private String projectId;
-
+	private String id;
 	private String title;
 	private Account owner;
 	private Account[] volunteers;
 	private boolean acceptingVolunteers;
 	private String description;
-
 	private String thumbnailUrl;
 	private String githubUrl;
-
-	public String getProjectId() {
-		return projectId;
+	public String getId() {
+		return id;
 	}
 
-	public void setProjectId(String id) {
-		this.projectId = projectId;
+	public void setId(String id) {
+		this.id = id;
 	}
-
 	public String getTitle() {
 		return title;
 	}

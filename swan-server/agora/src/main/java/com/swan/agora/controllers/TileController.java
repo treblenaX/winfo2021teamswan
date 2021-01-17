@@ -29,7 +29,7 @@ public class TileController {
     }
 
     // stopped here 
-    @RequestMapping(value = ApiConstants.MODIFY_PROJECT_URL, method = RequestMethod.PUT)
+    @RequestMapping(value = ApiConstants.MODIFY_TILE_URL, method = RequestMethod.PUT)
     public void modifyProjectByid(@PathVariable("id") String id,
                                        @Validated @RequestBody Tile tile) {
         tile.setProjectId(id);

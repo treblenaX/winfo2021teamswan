@@ -10,11 +10,39 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import { Tile } from './api/Tile';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+    palette: {
+      primary: {
+        light: '#ffffff',
+        main: '#f3e5f5',
+        dark: '#c0b3c2',
+        contrastText: '#000000',
+      },
+      secondary: {
+        light: '#edffff',
+        main: '#baddf9',
+        dark: '#89abc6',
+        contrastText: '#000000',
+      },
+    },
+  });
+import { Tile } from './api/Tile';
 
 // styles
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
+    },
+    container: {
+        paddingTop: theme.spacing(2),
+        backgroundColor: '#c8e6c9',
+        height: '1000vw',
+    },
+    appbar: {
+        color: '#000000',
+        backgroundColor: "#e1f5fe",
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -27,7 +55,21 @@ const useStyles = makeStyles((theme) => ({
       padding: theme.spacing(8),
       marginTop: theme.spacing(2),
       marginBottom: theme.spacing(2),
+      backgroundColor: '#ffffff',
     },
+    controls: {
+      align: 'right',
+    },
+    button: {
+      backgroundColor: '#ffffff',
+      color: '#000',
+    },
+    checkbox: {
+        color: '#ffffff',
+        '&$checked': {
+            color: '#ffffff',
+        },
+    }
 }));
 
 // todo: 
@@ -104,19 +146,24 @@ function Homepage(props: {items: Tile[] }) {
     // replace props with TypeScript typed information
     const classes = useStyles();
     return (
-        <Container maxWidth="lg">
-            <AppBar position="static">
+        <Container maxWidth="lg" className={classes.container}>
+            <AppBar position="static" className={classes.appbar}>
                 <Toolbar>
-                    <Typography variant="h1" className={classes.title}>
-                        Agora
-                    </Typography>
-                    <FormControlLabel
-                        control={<Checkbox checked={state.checkedA} onChange={handleCheckbox} name="checkedA" />}
-                        label="Is Open Only"
-                    />
-                    <Button onClick={handleButton} variant="contained" color="secondary">
-                        Post New Project
-                    </Button>
+                    <div>
+                        <Typography variant="h2" className={classes.title}>
+                            Agora
+                        </Typography>
+                    </div>
+                    <div className={classes.controls}>
+                        <FormControlLabel
+                            control={<Checkbox checked={state.checkedA} onChange={handleCheckbox} name="checkedA" className={classes.checkbox} />}
+                            label="Is Open Only"
+                        />
+                        <Button onClick={handleButton} variant="contained" className={classes.button}>
+                            Post New Project
+                        </Button>
+                    </div>
+                    
                 </Toolbar>
             </AppBar>
             <Timeline items = {items} />
