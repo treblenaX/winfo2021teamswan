@@ -10,7 +10,6 @@ public class Project {
 	private Account[] volunteers;
 	private boolean acceptingVolunteers;
 	private String description;
-
 	private String thumbnailUrl;
 	private String githubUrl;
 	public String getId() {
