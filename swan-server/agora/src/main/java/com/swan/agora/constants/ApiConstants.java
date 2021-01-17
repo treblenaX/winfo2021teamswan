@@ -5,7 +5,7 @@ public final class ApiConstants {
 
     // Account URLs
     public static final String BASE_ACCOUNT_URL = API_URL + "/account";
-    public static final String GET_ACCOUNTS_URL = "";
+    public static final String GET_ACCOUNTS_URL = "/getall/";
     public static final String GET_ACCOUNT_BY_ID = "/id/{id}";
     public static final String GET_ACCOUNT_BY_USERNAME = "/username";
     public static final String CREATE_NEW_ACCOUNT_URL = "/create_account";

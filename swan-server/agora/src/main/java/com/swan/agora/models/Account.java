@@ -8,20 +8,25 @@ public class Account {
     public ObjectId _id;
 
     public String name;
+    // yes - we're saving passwords in plaintext so we can implement other stuff first! :)
     public String passwordHash;
     public String username;
     public String email;
+
+    // identifier for picture
+    public String photoId;
 
     /** Constructors */
     public Account() {}
 
     public Account(ObjectId _id, String name, String passwordHash, String username,
-                   String email) {
+                   String email, String photoId) {
         this._id = _id;
         this.name = name;
         this.username = username;
         this.passwordHash = passwordHash;
         this.email = email;
+        this.photoId = photoId;
     }
 
     /** Getters and Setters */
